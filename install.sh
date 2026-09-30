@@ -11,8 +11,10 @@ set -eu
 #   pgAdmin:    5050
 #
 # Override example:
-#   curl -fsSL <URL> | POSTGRES_PORT=5433 sh
+#   curl -fsSL https://raw.githubusercontent.com/dethrandir/postgres14-school/main/install.sh | POSTGRES_PORT=5433 sh
 # ============================================================
+
+INSTALL_URL="https://raw.githubusercontent.com/dethrandir/postgres14-school/main/install.sh"
 
 INSTALL_DIR="${INSTALL_DIR:-$HOME/postgres14-school}"
 
@@ -263,11 +265,13 @@ check_required_port() {
         printf "Kurulum hiçbir değişiklik yapılmadan durduruldu.\n"
 
         printf "\nFarklı bir portla çalıştırmak istersen:\n"
-        printf "  curl -fsSL <install.sh URL> | %s=XXXX sh\n" \
+        printf "  curl -fsSL %s | %s=XXXX sh\n" \
+            "$INSTALL_URL" \
             "$variable"
 
         printf "\nÖrnek:\n"
-        printf "  curl -fsSL <install.sh URL> | %s=%s sh\n\n" \
+        printf "  curl -fsSL %s | %s=%s sh\n\n" \
+            "$INSTALL_URL" \
             "$variable" \
             "$((port + 1))"
 
